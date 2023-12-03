@@ -10,7 +10,7 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <title>German Verbs Quiz</title>
+  <title>Deutch Verben mit präposiotionen Quiz</title>
 
 </head>
 
@@ -52,9 +52,9 @@
         </div>
 
 
-        <button class="btn btn-primary" onclick="checkAnswers()">Check Answers</button>
-        <button class="btn btn-primary" onclick="Help()">Help !!!</button>
-        <button class="btn btn-primary" onclick="NewVerb()">New Verb</button>
+        <button class="btn btn-primary" onclick="checkAnswers()">Überprüfen</button>
+        <button class="btn btn-primary" onclick="Help()">Hilf mir bitte !!!</button>
+        <button class="btn btn-primary" onclick="NewVerb()">Noch ein Verben</button>
 
     </div>
 
@@ -1544,7 +1544,7 @@
 
             const currentData = data[0];
             
-            $('#verbName').html(`What prepositions go with the verb "<B>${currentData.infinitive_DE}</B> - <I>${currentData.infinitive_ENG}</>  "?`);
+            $('#verbName').html(`Welche präpositionen passen zum Verbe "<B>${currentData.infinitive_DE}</B> - <I>(${currentData.infinitive_ENG})</I>  "?`);
            
             const quizForm = $('#quizForm');
 
@@ -1559,7 +1559,7 @@
 
                 const inputGroup = $('<div class="input-group mb-3"></div>');
 
-                inputGroup.append(`<div class="input-group-prepend"><span class="input-group-text">Preposition</span></div>`);
+                inputGroup.append(`<div class="input-group-prepend"><span class="input-group-text">Präpositionen</span></div>`);
 
                 //                    inputGroup.append(`<input type="text" class="form-control" id="preposition${index}" placeholder="Enter your preposition guess">`);
 
@@ -1682,11 +1682,11 @@
 
             if (allCorrect) {
 
-                alert('Correct!');
+                alert('Rischtig :)!');
 
             } else {
 
-                alert('Incorrect. Try again.');
+                alert('Falsch :( ! Noch ein mal...');
 
                 return; // Don't move to the next question if any answer is incorrect
 
