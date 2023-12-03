@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <title>German Verbs Quiz</title>
+
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <div class="container mt-5">
+
+        <h2 id="verbName">Verb Placeholder</h2>
+
+        <div id="quizForm">
+
+            <!-- Default line with two input fields -->
+            <!-- <div class="input-group mb-3">
+
+            <div class="input-group-prepend">
+
+                <span class="input-group-text">Your guess for preposition</span>
+
+            </div>
+
+            <input type="text" class="form-control" id="preposition0" placeholder="Enter your preposition guess">
+
+            <div class="input-group-prepend">
+
+                <span class="input-group-text">Your guess for casus</span>
+
+            </div>
+
+            <input type="text" class="form-control" id="casus0" placeholder="Enter your casus guess">
+
+        </div>-->
+
+        </div>
+
+
+        <button class="btn btn-primary" onclick="checkAnswers()">Check Answers</button>
+        <button class="btn btn-primary" onclick="Help()">Help !!!</button>
+        <button class="btn btn-primary" onclick="NewVerb()">New Verb</button>
+
+    </div>
+
+
+    <script>
+        let data = [];
+        //quizForm.empty();
+    /*    let data = [
+            {
+                "verbQuestionID": 538,
+                "infinitive_DE": "leiden",
+                "infinitive_ENG": "Suffer",
+                "tense": "Infinitive",
+                "pronomen": "",
+                "preposition": "an",
+                "answer": "",
+                "verbTypeID": 2,
+                "casus": "Dat.",
+                "example": "Zwei Prozent der Deutschen leiden an der Krankheit."
+            },
+            {
+                "verbQuestionID": 539,
+                "infinitive_DE": "leiden",
+                "infinitive_ENG": "Suffer",
+                "tense": "Infinitive",
+                "pronomen": "",
+                "preposition": "unter",
+                "answer": "",
+                "verbTypeID": 2,
+                "casus": "Dat.",
+                "example": "Tiere leiden unter dem wenigen Schnee."
+            }
+        ]; */
+
+        function NewVerb() {
+            const quizForm = $('#quizForm').html("");
+            // Function to get the value of a query string parameter
+            function getQueryParam(parameterName) {
+                const urlSearchParams = new URLSearchParams(window.location.search);
+                return urlSearchParams.get(parameterName);
+            }
+
+            // Check if the "Kapitel" query string parameter is provided
+            const kapitelValue = getQueryParam('Kapitel');
+
+            let stringURL = '';
+            if (kapitelValue !== null) {
+                // Do something with the parameter value
+                stringURL = 'https://localhost:44361/api/v1/Verbs?Kapitel=' + kapitelValue;
+                console.log('Kapitel is provided with value:', kapitelValue);
+            } else {
+                stringURL = 'https://localhost:44361/api/v1/Verbs';
+                console.log('Kapitel is not provided');
+            }
+            const offLine = getQueryParam('offLine');
+            if (offLine === null)
+            { 
+                     console.log('trying to go online');
+
+                        $.ajax({
+                            url: stringURL,
+                            method: 'GET',
+                            dataType: 'json',
+                            success: function (dataFromApi) {
+                                console.log('Online');
+                                
+                                // Replace the hardcoded data array with the data from the API
+                                data = dataFromApi;
+                                console.log(data);
+
+                                let currentIndex = 0;
+
+                                loadQuestion();
+
+
+                            },
+                            error: function (error) {
+                                console.error('Offline', error);
+                                
+                                data = GetRamdomQuestionFromBigArray();
+                               
+                                let currentIndex = 0;
+                              
+                                loadQuestion();
+                                console.log('1');
+
+                            }
+                        });
+             }
+            else {
+                GetRamdomQuestionFromBigArray(kapitelValue);
+
+                let currentIndex = 0;
+
+                loadQuestion();
+            }
+        }
+
+        function GetRamdomQuestionFromBigArray(pKapitel)
+        {
+            let alldata = [
+                {
+                    "verbQuestionID": 445,
+                    "infinitive_DE": "(sich) engagieren",
+                    "infinitive_ENG": "to become involved",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Der Politiker engagiert sich für mehr Zusammenarbeit.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 448,
+                    "infinitive_DE": "(sich) entschuldigen",
+                    "infinitive_ENG": "to apologize",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich möchte mich für die Absage entschuldigen.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 449,
+                    "infinitive_DE": "(sich) entschuldigen",
+                    "infinitive_ENG": "to apologize",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich entschuldige mich bei dir.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 452,
+                    "infinitive_DE": "(sich) erinnern",
+                    "infinitive_ENG": "to remember",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Erinnerst du dich an den Geburtstag von Ina?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 466,
+                    "infinitive_DE": "(sich) gewöhnen",
+                    "infinitive_ENG": "get used to",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Jetzt habe ich mich an die Situation gewöhnt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 530,
+                    "infinitive_DE": "(sich) informieren",
+                    "infinitive_ENG": "get informed",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie informiert sich über den Vertrag.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 531,
+                    "infinitive_DE": "(sich) interessieren",
+                    "infinitive_ENG": "Interested in",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich interessiere mich für den neuen Film.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 556,
+                    "infinitive_DE": "(sich) streiten",
+                    "infinitive_ENG": "argue",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich will nicht mit dir streiten.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 557,
+                    "infinitive_DE": "(sich) streiten",
+                    "infinitive_ENG": "argue",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Wir haben über das Thema gestritten.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 572,
+                    "infinitive_DE": "(sich) vorbereiten",
+                    "infinitive_ENG": "get ready",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie bereitet die Hunde auf ihre Aufgaben vor.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 325,
+                    "infinitive_DE": "abhängen",
+                    "infinitive_ENG": "depend",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Das hängt von dir ab.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 326,
+                    "infinitive_DE": "achten",
+                    "infinitive_ENG": "regard",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Soll dein Partner auf Mode achten?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 327,
+                    "infinitive_DE": "anfangen",
+                    "infinitive_ENG": "begin",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Morgen fange ich mit der Arbeit an.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 328,
+                    "infinitive_DE": "anrufen",
+                    "infinitive_ENG": "call",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich rufe beim Arzt an.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 329,
+                    "infinitive_DE": "antworten",
+                    "infinitive_ENG": "answer",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie hat schnell auf meine Fragen geantwortet.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 330,
+                    "infinitive_DE": "arbeiten",
+                    "infinitive_ENG": "work",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "als",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Nominative",
+                    "example": "Icharbeite alsiLehrer.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 331,
+                    "infinitive_DE": "arbeiten",
+                    "infinitive_ENG": "work",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Arbeitest du bei einem großen Unternehmen?",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 333,
+                    "infinitive_DE": "aufhören",
+                    "infinitive_ENG": "stop",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Kannst du bitte mit dem Lärm aufhören?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 334,
+                    "infinitive_DE": "bedeuten",
+                    "infinitive_ENG": "mean",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Was bedeutet das für Touristen?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 428,
+                    "infinitive_DE": "beginnen",
+                    "infinitive_ENG": "begin",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Wann beginnst du mit der Arbeit?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 429,
+                    "infinitive_DE": "berichten",
+                    "infinitive_ENG": "to report",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Der Artikel berichtet über den neuen Rekord.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 430,
+                    "infinitive_DE": "berichten",
+                    "infinitive_ENG": "to report",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Artikel berichtet von dem neuen Rekord.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 435,
+                    "infinitive_DE": "bitten",
+                    "infinitive_ENG": "ask",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "um",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Julia bittet Carla um Hilfe.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 436,
+                    "infinitive_DE": "danken",
+                    "infinitive_ENG": "to thank",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich danke dir für die Blumen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 437,
+                    "infinitive_DE": "demonstrieren",
+                    "infinitive_ENG": "demonstrate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die Menschen demonstrieren für bessere Bildung.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 438,
+                    "infinitive_DE": "demonstrieren",
+                    "infinitive_ENG": "demonstrate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "gegen",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Viele Bürger haben gegen die Regierung demonstriert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 439,
+                    "infinitive_DE": "denken",
+                    "infinitive_ENG": "think",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Julia denkt an Patrick.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 440,
+                    "infinitive_DE": "diskutieren",
+                    "infinitive_ENG": "discuss",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Wir haben über Vor- und Nachteile von Autos diskutiert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 441,
+                    "infinitive_DE": "diskutieren",
+                    "infinitive_ENG": "discuss",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich möchte mit dir nicht diskutieren.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 444,
+                    "infinitive_DE": "einladen",
+                    "infinitive_ENG": "invite",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "zu",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich lade dich zu meiner Geburtstagsfeier ein.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 450,
+                    "infinitive_DE": "entstehen",
+                    "infinitive_ENG": "arise",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "aus",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Möbel entstehen aus Holz.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 456,
+                    "infinitive_DE": "erwarten",
+                    "infinitive_ENG": "expect",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Wir erwarten viel von unseren Bewerbern.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 457,
+                    "infinitive_DE": "erzählen",
+                    "infinitive_ENG": "tell",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er hat mir von der Uni erzählt.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 463,
+                    "infinitive_DE": "es geht",
+                    "infinitive_ENG": "it works",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "um",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "In dem Spiel geht es um die fiktive Insel Catan.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 458,
+                    "infinitive_DE": "fliehen",
+                    "infinitive_ENG": "flee",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "vor",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Viele Menschen fliehen vor dem Krieg.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 459,
+                    "infinitive_DE": "fragen",
+                    "infinitive_ENG": "questions",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "nach",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Eine Studie hat nach Partnerwünschen gefragt.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 464,
+                    "infinitive_DE": "gehören",
+                    "infinitive_ENG": "belong",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "zu",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Zu einer guten Party gehört auch Musik.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 465,
+                    "infinitive_DE": "gelten",
+                    "infinitive_ENG": "apply",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "als",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Nominative",
+                    "example": "„German games\" gelten als besondere Brettspiele.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 467,
+                    "infinitive_DE": "glauben",
+                    "infinitive_ENG": "believe",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die Mutter glaubt an den Erfolg ihres Sohnes.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 468,
+                    "infinitive_DE": "gratulieren",
+                    "infinitive_ENG": "congratulate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "zu",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich gratuliere dir herzlich zu deinem Geburtstag.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 470,
+                    "infinitive_DE": "handeln",
+                    "infinitive_ENG": "act",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Artikel handelt von der Schwimmerin Nathalie Pol Bei dem Spiel handelt man mit anderen Spielern.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 471,
+                    "infinitive_DE": "handeln",
+                    "infinitive_ENG": "act",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Artikel handelt von der Schwimmerin Nathalie Pol Bei dem Spiel handelt man mit anderen Spielern.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 472,
+                    "infinitive_DE": "helfen",
+                    "infinitive_ENG": "help",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Assistenzhund hilft bei der Integration.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 473,
+                    "infinitive_DE": "helfen",
+                    "infinitive_ENG": "help",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich kann dir mit den Hausaufgaben helfen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 532,
+                    "infinitive_DE": "kämpfen",
+                    "infinitive_ENG": "battle",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er kämpft für seinen Sieg.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 533,
+                    "infinitive_DE": "kämpfen",
+                    "infinitive_ENG": "battle",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "gegen",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Wir kämpfen gegen die englische Mannschaft.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 534,
+                    "infinitive_DE": "kämpfen",
+                    "infinitive_ENG": "battle",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Die Teilnehmer kämpfen mit Wörtern.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 535,
+                    "infinitive_DE": "kämpfen",
+                    "infinitive_ENG": "battle",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "um",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die Teilnehmer kämpfen um den ersten Platz.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 537,
+                    "infinitive_DE": "lachen",
+                    "infinitive_ENG": "laugh",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie hat sehr über die Geschichte gelacht.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 538,
+                    "infinitive_DE": "leiden",
+                    "infinitive_ENG": "Suffer",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Zwei Prozent der Deutschen leiden an der Krankheit.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 539,
+                    "infinitive_DE": "leiden",
+                    "infinitive_ENG": "Suffer",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "unter",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Tiere leiden unter dem wenigen Schnee.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 540,
+                    "infinitive_DE": "lesen",
+                    "infinitive_ENG": "read",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich habe gestern von dieser Krankheit",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 541,
+                    "infinitive_DE": "lesen",
+                    "infinitive_ENG": "read",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich habe gestern  über diese Krankheit",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 542,
+                    "infinitive_DE": "nachdenken",
+                    "infinitive_ENG": "ponder",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie denkt viel über ihren Job nach.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 543,
+                    "infinitive_DE": "passen",
+                    "infinitive_ENG": "fit",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "zu",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Dieses Bild passt nicht zu dem Text.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 544,
+                    "infinitive_DE": "protestieren",
+                    "infinitive_ENG": "protest",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "gegen",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die DDR-Bürger haben gegen die Regierung protestiert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 545,
+                    "infinitive_DE": "reagieren",
+                    "infinitive_ENG": "react",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er hat nicht auf meine E-Mail reagiert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 546,
+                    "infinitive_DE": "riechen",
+                    "infinitive_ENG": "smell",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "nach",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Hier riecht es nach gutem Essen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 547,
+                    "infinitive_DE": "schicken",
+                    "infinitive_ENG": "send",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich habe die Bewerbung an die Firma geschickt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 548,
+                    "infinitive_DE": "schimpfen",
+                    "infinitive_ENG": "rant",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Viele Menschen schimpfen über den Verkehr.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 549,
+                    "infinitive_DE": "schimpfen",
+                    "infinitive_ENG": "rant",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Vater schimpft mit seinem Sohn.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 332,
+                    "infinitive_DE": "sich ärgern",
+                    "infinitive_ENG": "get angry",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er ärgert sich über den lauten Umzug.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 335,
+                    "infinitive_DE": "sich beeilen",
+                    "infinitive_ENG": "hurry up",
+                    "tense": "Infinitive",
+                    "pronomen": null,
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er muss sich mit der Arbeit beeilen.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 431,
+                    "infinitive_DE": "sich beschweren",
+                    "infinitive_ENG": "complain",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Sie beschweren sich bei den Nachbarn.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 432,
+                    "infinitive_DE": "sich beschweren",
+                    "infinitive_ENG": "complain",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er hat sich über den Lärm beschwert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 433,
+                    "infinitive_DE": "sich bewerben",
+                    "infinitive_ENG": "apply",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "um",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich habe mich um/auf die Stelle beworben.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 434,
+                    "infinitive_DE": "sich bewerben",
+                    "infinitive_ENG": "apply",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich habe mich auf die Stelle beworben.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 442,
+                    "infinitive_DE": "sich einigen",
+                    "infinitive_ENG": "agree",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Wir haben uns auf eine gute Lösung geeinigt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 443,
+                    "infinitive_DE": "sich einigen",
+                    "infinitive_ENG": "agree",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich möchte mich gerne mit dir einigen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 446,
+                    "infinitive_DE": "sich entscheiden",
+                    "infinitive_ENG": "decide",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "für",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die Menschen haben sich für die EU entschieden.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 447,
+                    "infinitive_DE": "sich entscheiden",
+                    "infinitive_ENG": "decide",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "gegen",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Die Mehrheit hat sich gegen das Gesetz entschieden.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 451,
+                    "infinitive_DE": "sich erholen",
+                    "infinitive_ENG": "to recover",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich möchte mich vom Alltagsstress erholen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 453,
+                    "infinitive_DE": "sich erkundigen",
+                    "infinitive_ENG": "inquire",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "bei",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er erkundigt sich dann bei dir.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 454,
+                    "infinitive_DE": "sich erkundigen",
+                    "infinitive_ENG": "inquire",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "nach",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "In der Bibliothek erkundigt sie sich nach der Leihfrist.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 455,
+                    "infinitive_DE": "sich erschrecken",
+                    "infinitive_ENG": "get scared",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "vor",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Helga hat sich vor der Drohne erschrocken.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 460,
+                    "infinitive_DE": "sich freuen",
+                    "infinitive_ENG": "rejoice",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich freue mich auf den Urlaub.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 461,
+                    "infinitive_DE": "sich freuen",
+                    "infinitive_ENG": "rejoice",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er freut sich über den günstigen Tarif.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 462,
+                    "infinitive_DE": "sich fürchten",
+                    "infinitive_ENG": "to be afraid",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "vor",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "ich fürchte mich vor dem Missbrauch meiner Daten beim bargeldlosen Bezahlen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 469,
+                    "infinitive_DE": "sich halten",
+                    "infinitive_ENG": "hold on",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Man muss sich an die Regeln halten.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 536,
+                    "infinitive_DE": "sich kümmern",
+                    "infinitive_ENG": "take care",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "um",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie kümmert sich um ihre Kinder.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 550,
+                    "infinitive_DE": "sich spezialisieren",
+                    "infinitive_ENG": "specialize",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Ich habe mich auf Motorräder spezialisiert.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 563,
+                    "infinitive_DE": "sich treffen",
+                    "infinitive_ENG": "meet",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich habe mich gestern mit ihm getroffen.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 567,
+                    "infinitive_DE": "sich unterhalten",
+                    "infinitive_ENG": "talk",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Willst du dich über die Schule unterhalten?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 568,
+                    "infinitive_DE": "sich unterhalten",
+                    "infinitive_ENG": "talk",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich will mich nicht mit dir unterhalten.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 569,
+                    "infinitive_DE": "sich verabreden",
+                    "infinitive_ENG": "arrange to meet",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich möchte mich gern mit dir verabreden.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 570,
+                    "infinitive_DE": "sich verlieben",
+                    "infinitive_ENG": "fall in love",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "in",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Julia hat sich in Patrick verliebt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 575,
+                    "infinitive_DE": "sich wundern",
+                    "infinitive_ENG": "to wonder",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Er wundert sich über die E-Mail.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 551,
+                    "infinitive_DE": "sprechen",
+                    "infinitive_ENG": "speak",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "über",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Wir haben über unsere Beziehung",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 552,
+                    "infinitive_DE": "sprechen",
+                    "infinitive_ENG": "speak",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Wir haben von unserer Beziehung gesprochen.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 553,
+                    "infinitive_DE": "sprechen",
+                    "infinitive_ENG": "speak",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Ich spreche oft mit meinen Nachbarn.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 555,
+                    "infinitive_DE": "steigen",
+                    "infinitive_ENG": "climb",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "In Berlin steigt die Temperatur auf über 30 Grad.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 554,
+                    "infinitive_DE": "sterben",
+                    "infinitive_ENG": "die",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er ist an Krebs gestorben.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 558,
+                    "infinitive_DE": "suchen",
+                    "infinitive_ENG": "seek",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "nach",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Im Internet kann ich nach Werkzeug suchen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 559,
+                    "infinitive_DE": "tauschen",
+                    "infinitive_ENG": "to exchange",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "gegen",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie müssen Holz gegen Wolle tauschen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 560,
+                    "infinitive_DE": "teilnehmen",
+                    "infinitive_ENG": "participate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Man muss an vielen Besprechungen teilnehmen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 561,
+                    "infinitive_DE": "telefonieren",
+                    "infinitive_ENG": "make a phone call",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "mit",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Hast du schon mit den Kindern telefoniert?",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 562,
+                    "infinitive_DE": "träumen",
+                    "infinitive_ENG": "dream",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Sie träumt von einem eigenen Haus.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 564,
+                    "infinitive_DE": "übersetzen",
+                    "infinitive_ENG": "translate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "in",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Man hat das Buch in 35 Sprachen übersetzt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 565,
+                    "infinitive_DE": "übersetzen",
+                    "infinitive_ENG": "translate",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "aus",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er übersetzt das Buch aus dem Englischen.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 566,
+                    "infinitive_DE": "überzeugen",
+                    "infinitive_ENG": "convince",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "von",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er hat mich von der Idee überzeugt.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 571,
+                    "infinitive_DE": "verzichten",
+                    "infinitive_ENG": "waive",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Heute verzichte ich auf den Nachtisch.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 573,
+                    "infinitive_DE": "warnen",
+                    "infinitive_ENG": "to warn",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "vor",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Der Wetterdienst warnt vor Gewittern.",
+                    "kapitel": 0
+                },
+                {
+                    "verbQuestionID": 574,
+                    "infinitive_DE": "warten",
+                    "infinitive_ENG": "wait",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "auf",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Akkusative",
+                    "example": "Sie wartet nicht gerne auf ihren Partner.",
+                    "kapitel": 1
+                },
+                {
+                    "verbQuestionID": 576,
+                    "infinitive_DE": "zweifeln",
+                    "infinitive_ENG": "doubt",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dative",
+                    "example": "Er zweifelt an dem Bericht.",
+                    "kapitel": 0
+                }
+            ];
+
+  
+            console.log(pKapitel);
+
+            let data2BDistincted;
+            if (pKapitel !== null) {
+                data2BDistincted = [...alldata.filter(item => item.kapitel === parseInt(pKapitel))];
+            } else {
+                data2BDistincted = alldata;
+            }
+
+           
+            let distinctInfinitives = [...new Set(data2BDistincted.map(item => item.infinitive_DE))];
+
+            console.log('>' + data2BDistincted);
+          
+            // Choose a random infinitive_DE from the distinctInfinitives array
+            let randomInfinitive = distinctInfinitives[Math.floor(Math.random() * distinctInfinitives.length)];
+     
+            // Filter the original array based on the random infinitive_DE
+           // console.log(JSON.stringify(alldata));
+            let filteredData;
+
+            
+            filteredData = alldata.filter(item => item.infinitive_DE === randomInfinitive);
+            
+            
+            data = [...filteredData];
+            
+        }
+
+        function loadQuestion() {
+
+            const currentData = data[0];
+            
+            $('#verbName').html(`What prepositions go with the verb "<B>${currentData.infinitive_DE}</B> - <I>${currentData.infinitive_ENG}</>  "?`);
+           
+            const quizForm = $('#quizForm');
+
+            // quizForm.empty();
+            //alert(data.length);s
+
+            let index = 0; // Replace with the actual index you want
+
+
+
+            data.forEach((verb, index) => {
+
+                const inputGroup = $('<div class="input-group mb-3"></div>');
+
+                inputGroup.append(`<div class="input-group-prepend"><span class="input-group-text">Preposition</span></div>`);
+
+                //                    inputGroup.append(`<input type="text" class="form-control" id="preposition${index}" placeholder="Enter your preposition guess">`);
+
+                //preposition option
+                let prepositionSelect = $('<select>', {
+                    class: 'form-control',
+                    id: `preposition${index}`,
+                    placeholder: 'Select your preposition',
+                });
+
+                // Add options to the select dropdown
+                const prepositions = ['als', 'an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'über', 'um', 'unter', 'von', 'vor', 'zu'];
+
+                prepositions.forEach((preposition) => {
+                    prepositionSelect.append(`<option value="${preposition}">${preposition}</option>`);
+                });
+
+                // Replace the input with the select dropdown
+                inputGroup.append(prepositionSelect);
+                //preposition option END
+
+                inputGroup.append(`<div class="input-group-prepend"><span class="input-group-text">Casus</span></div>`);
+
+                //preposition option
+                let casusSelect = $('<select>', {
+                    class: 'form-control',
+                    id: `casus${index}`,
+                    placeholder: 'Select your casus',
+                });
+
+                // Add options to the select dropdown
+                const casuss = ['Nominative', 'Akkusative', 'Dative'];
+
+                casuss.forEach((casus) => {
+                    casusSelect.append(`<option value="${casus}">${casus}</option>`);
+                });
+
+                // Replace the input with the select dropdown
+                inputGroup.append(casusSelect);
+                //preposition option END
+                //    inputGroup.append(`<input type="text" class="form-control" id="casus${index}" placeholder="Enter your casus guess">`);
+
+                quizForm.append(inputGroup);
+
+            });
+
+        }
+
+        function Help() {
+
+
+            const currentData = [...data];
+
+            // $('#verbName').html(`What prepositions go with the verb "<B>${currentData.infinitive_DE}</B> - <I>${currentData.infinitive_ENG}</>  "?`);
+
+            // const quizForm = $('#quizForm');
+
+            // quizForm.empty();
+            //  alert(data.length);
+
+            //  let index = 0; // Replace with the actual index you want
+
+
+
+            currentData.forEach((verb, index) => {
+
+                $(`#preposition${index}`).val(verb.preposition);
+
+                $(`#casus${index}`).val(verb.casus);
+                $(`#preposition${index}`).removeClass('is-invalid');
+                $(`#casus${index}`).removeClass('is-invalid');
+            });
+
+
+        }
+
+        function addLine() {
+
+            const newLine = { verb: 'sprechen', prepositions: [{ preposition: 'default', casus: 'default' }] };
+
+            data.push(newLine);
+
+            loadQuestion();
+
+        }
+
+        function checkAnswers() {
+
+            // Check user answers and provide feedback
+
+            //  const currentData = data[currentIndex];
+
+            var checkData = [...data];
+
+            let allCorrect = true;
+
+            data.forEach((verb, index) => {
+
+                const userPreposition = $(`#preposition${index}`).val();
+
+                const userCasus = $(`#casus${index}`).val();
+
+                let indexFound = checkData.findIndex(value => (value.preposition == userPreposition) && (value.casus == userCasus));
+                if (indexFound == -1) {
+                    allCorrect = false;
+                    if (checkData.findIndex(value => (value.casus == userCasus)) == -1) {
+                        $(`#casus${index}`).addClass('is-invalid');
+                    }
+                    else { 
+                        $(`#preposition${index}`).addClass('is-invalid');
+                    }
+
+                } else {
+                    checkData.splice(indexFound, 1);
+                    $(`#casus${indexFound}`).removeClass('is-invalid');
+                    $(`#preposition${indexFound}`).removeClass('is-invalid');
+                }
+
+            });
+
+            if (allCorrect) {
+
+                alert('Correct!');
+
+            } else {
+
+                alert('Incorrect. Try again.');
+
+                return; // Don't move to the next question if any answer is incorrect
+
+            }
+
+            // Move to the next question or show completion message
+
+            /*      currentIndex++;
+
+                  if (currentIndex < data.length) {
+
+                      loadQuestion();
+
+                  } else {
+
+                      alert('Quiz completed!'); // You can customize this part, maybe display a score
+
+                  }
+                  */
+        }
+
+        // Initial load
+
+        NewVerb();
+
+    </script>
+
+</body>
+
+    </html>
