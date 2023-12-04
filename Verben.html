@@ -1,54 +1,94 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-  <title>Deutch Verben mit präposiotionen Quiz</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Deutch Verben mit präposiotionen Quiz</title>
 </head>
-
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <div class="container mt-5">
-
         <h2 id="verbName">Verb Placeholder</h2>
 
+
+        <!-- Default line with two input fields -->
+        <!-- <div class="input-group mb-3">
+
+        <div class="input-group-prepend">
+
+            <span class="input-group-text">Your guess for preposition</span>
+
+        </div>
+
+        <input type="text" class="form-control" id="preposition0" placeholder="Enter your preposition guess">
+
+        <div class="input-group-prepend">
+
+            <span class="input-group-text">Your guess for casus</span>
+
+        </div>
+
+        <input type="text" class="form-control" id="casus0" placeholder="Enter your casus guess">
+
+    </div>-->
+        <!-- Updated Modal -->
+        <!-- Updated Modal -->
+        <!-- Updated Modal -->
+        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="messageModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Message content will be displayed here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Updated CSS -->
+        <style>
+            .modal-content {
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            }
+
+            .modal-header {
+                border-bottom: 2px solid #ddd; /* Separate header from body with a subtle border */
+            }
+
+                .modal-header.error {
+                    background-color: #f8d7da; /* Red background for error messages */
+                    color: #721c24; /* Dark red text color */
+                }
+
+                .modal-header.warning {
+                    background-color: #fff3cd; /* Yellow background for warning messages */
+                    color: #856404; /* Dark yellow text color */
+                }
+
+                .modal-header.default {
+                    background-color: #f0f0f0; /* Default background color for normal messages */
+                    color: #000; /* Black text color */
+                }
+                .modal-header.ok {
+                    background-color: #d4edda; /* Green background for OK messages */
+                    color: #155724; /* Dark green text color */
+                }
+        </style>
+
         <div id="quizForm">
-
-            <!-- Default line with two input fields -->
-            <!-- <div class="input-group mb-3">
-
-            <div class="input-group-prepend">
-
-                <span class="input-group-text">Your guess for preposition</span>
-
-            </div>
-
-            <input type="text" class="form-control" id="preposition0" placeholder="Enter your preposition guess">
-
-            <div class="input-group-prepend">
-
-                <span class="input-group-text">Your guess for casus</span>
-
-            </div>
-
-            <input type="text" class="form-control" id="casus0" placeholder="Enter your casus guess">
-
-        </div>-->
-
         </div>
 
 
@@ -62,39 +102,80 @@
     <script>
         let data = [];
         //quizForm.empty();
-    /*    let data = [
-            {
-                "verbQuestionID": 538,
-                "infinitive_DE": "leiden",
-                "infinitive_ENG": "Suffer",
-                "tense": "Infinitive",
-                "pronomen": "",
-                "preposition": "an",
-                "answer": "",
-                "verbTypeID": 2,
-                "casus": "Dat.",
-                "example": "Zwei Prozent der Deutschen leiden an der Krankheit."
-            },
-            {
-                "verbQuestionID": 539,
-                "infinitive_DE": "leiden",
-                "infinitive_ENG": "Suffer",
-                "tense": "Infinitive",
-                "pronomen": "",
-                "preposition": "unter",
-                "answer": "",
-                "verbTypeID": 2,
-                "casus": "Dat.",
-                "example": "Tiere leiden unter dem wenigen Schnee."
+        /*    let data = [
+                {
+                    "verbQuestionID": 538,
+                    "infinitive_DE": "leiden",
+                    "infinitive_ENG": "Suffer",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "an",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dat.",
+                    "example": "Zwei Prozent der Deutschen leiden an der Krankheit."
+                },
+                {
+                    "verbQuestionID": 539,
+                    "infinitive_DE": "leiden",
+                    "infinitive_ENG": "Suffer",
+                    "tense": "Infinitive",
+                    "pronomen": "",
+                    "preposition": "unter",
+                    "answer": "",
+                    "verbTypeID": 2,
+                    "casus": "Dat.",
+                    "example": "Tiere leiden unter dem wenigen Schnee."
+                }
+            ]; */
+
+        function showMessage(title, message, messageType) {
+            const modal = $('#messageModal');
+            const modalTitle = modal.find('.modal-title');
+            const modalHeader = modal.find('.modal-header');
+            const modalBody = modal.find('.modal-body');
+
+            // Clear existing classes and content
+            modalTitle.html('');
+            modalHeader.removeClass('error warning default ok');
+            modalBody.html('');
+
+            // Set title, header class, and content based on messageType
+            modalTitle.html(title);
+            if (messageType === 'error') {
+                modalHeader.addClass('error');
+                modalBody.html('<img height="100px" src="images/error.png" alt="Error Image"> ' + message);
+            } else if (messageType === 'warning') {
+                modalHeader.addClass('warning');
+                modalBody.html('<strong>Warning:</strong> ' + message);
+            } else if (messageType === 'ok') {
+                modalHeader.addClass('ok');
+                modalBody.html('<img height="100px" src="images/ok.png" alt="Error Image"> ' + message);
+            } else {
+                modalHeader.addClass('default');
+                modalBody.html('<strong>Message:</strong> ' + message);
             }
-        ]; */
+
+
+            // Show the modal
+            modal.modal('show');
+        }
 
         function NewVerb() {
             const quizForm = $('#quizForm').html("");
             // Function to get the value of a query string parameter
             function getQueryParam(parameterName) {
                 const urlSearchParams = new URLSearchParams(window.location.search);
-                return urlSearchParams.get(parameterName);
+                const paramNameLower = parameterName.toLowerCase();
+
+                // Iterate over all keys to find a case-insensitive match
+                for (const key of urlSearchParams.keys()) {
+                    if (key.toLowerCase() === paramNameLower) {
+                        return urlSearchParams.get(key);
+                    }
+                }
+
+                return null; // Return null if the parameter is not found
             }
 
             // Check if the "Kapitel" query string parameter is provided
@@ -110,40 +191,39 @@
                 console.log('Kapitel is not provided');
             }
             const offLine = getQueryParam('offLine');
-            if (offLine === null)
-            { 
-                     console.log('trying to go online');
+            if (offLine === null) {
+                console.log('trying to go online');
 
-                        $.ajax({
-                            url: stringURL,
-                            method: 'GET',
-                            dataType: 'json',
-                            success: function (dataFromApi) {
-                                console.log('Online');
-                                
-                                // Replace the hardcoded data array with the data from the API
-                                data = dataFromApi;
-                                console.log(data);
+                $.ajax({
+                    url: stringURL,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (dataFromApi) {
+                        console.log('Online');
 
-                                let currentIndex = 0;
+                        // Replace the hardcoded data array with the data from the API
+                        data = dataFromApi;
+                        console.log(data);
 
-                                loadQuestion();
+                        let currentIndex = 0;
+
+                        loadQuestion();
 
 
-                            },
-                            error: function (error) {
-                                console.error('Offline', error);
-                                
-                                data = GetRamdomQuestionFromBigArray();
-                               
-                                let currentIndex = 0;
-                              
-                                loadQuestion();
-                                console.log('1');
+                    },
+                    error: function (error) {
+                        console.error('Offline', error);
 
-                            }
-                        });
-             }
+                        data = GetRamdomQuestionFromBigArray();
+
+                        let currentIndex = 0;
+
+                        loadQuestion();
+                        console.log('1');
+
+                    }
+                });
+            }
             else {
                 GetRamdomQuestionFromBigArray(kapitelValue);
 
@@ -153,8 +233,7 @@
             }
         }
 
-        function GetRamdomQuestionFromBigArray(pKapitel)
-        {
+        function GetRamdomQuestionFromBigArray(pKapitel) {
             let alldata = [
                 {
                     "verbQuestionID": 445,
@@ -1510,7 +1589,7 @@
                 }
             ];
 
-  
+
             console.log(pKapitel);
 
             let data2BDistincted;
@@ -1520,32 +1599,32 @@
                 data2BDistincted = alldata;
             }
 
-           
+
             let distinctInfinitives = [...new Set(data2BDistincted.map(item => item.infinitive_DE))];
 
             console.log('>' + data2BDistincted);
-          
+
             // Choose a random infinitive_DE from the distinctInfinitives array
             let randomInfinitive = distinctInfinitives[Math.floor(Math.random() * distinctInfinitives.length)];
-     
+
             // Filter the original array based on the random infinitive_DE
-           // console.log(JSON.stringify(alldata));
+            // console.log(JSON.stringify(alldata));
             let filteredData;
 
-            
+
             filteredData = alldata.filter(item => item.infinitive_DE === randomInfinitive);
-            
-            
+
+
             data = [...filteredData];
-            
+
         }
 
         function loadQuestion() {
 
             const currentData = data[0];
-            
+
             $('#verbName').html(`Welche präpositionen passen zum Verbe "<B>${currentData.infinitive_DE}</B> - <I>(${currentData.infinitive_ENG})</I>  "?`);
-           
+
             const quizForm = $('#quizForm');
 
             // quizForm.empty();
@@ -1668,7 +1747,7 @@
                     if (checkData.findIndex(value => (value.casus == userCasus)) == -1) {
                         $(`#casus${index}`).addClass('is-invalid');
                     }
-                    else { 
+                    else {
                         $(`#preposition${index}`).addClass('is-invalid');
                     }
 
@@ -1682,11 +1761,11 @@
 
             if (allCorrect) {
 
-                alert('Rischtig :)!');
+                showMessage('Ok ', 'Rischtig', 'ok');            
 
             } else {
-
-                alert('Falsch :( ! Noch ein mal...');
+                showMessage('Shade...','Falsch :( ! Noch ein mal...', 'error');
+                //   alert('Falsch :( ! Noch ein mal...');
 
                 return; // Don't move to the next question if any answer is incorrect
 
