@@ -31,6 +31,7 @@
                     <div class="form-group">
                         <label for="kapitelDropdown"><B>Kapitel:</B></label>
                         <select class="form-control" id="kapitelDropdown">
+                            <option value="">[ Alle ]</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -193,8 +194,12 @@
                     // Initialize the base URL
                     let stringURL = 'https://localhost:44361/api/v1/Namen/Single';
 
-                    const kurslValue = document.getElementById('kursDropdown').value;
-                    const kapitelValue = document.getElementById('kapitelDropdown').value;
+                    var kurslValue = document.getElementById('kursDropdown').value;
+                    var kapitelValue = document.getElementById('kapitelDropdown').value;
+
+                    if (kapitelValue === "") {
+                        kapitelValue = null;
+                    }
 
                     // Check if kapitelValue is provided
                     if (kapitelValue !== null) {
