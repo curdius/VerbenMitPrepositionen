@@ -11,7 +11,9 @@
 </head>
 <body>
     <div class="container-fluid bg-info text-white text-center py-3">
-        <h1>Deutsch Nomen Quiz</h1>
+        <h1>Deutsch Nomen Quiz</h1><div>
+                                       <p><span id="rightCount"></span> right answers | <span id="wrongCount"></span> wrong answer | <span id="inARowCount"></span> richtige Antworten in Folge | <span id="totalHelps"></span> Beihilfen</p>
+        </div>
     </div>
     <div class="container mt-5">
         <div class="container mt-5">
@@ -114,12 +116,25 @@
                 <button class="btn btn-info" onclick="Help()">Hilf mir bitte !!!</button>
                 <button class="btn btn-info" onclick="checkAnswers()">Überprüfen</button>
                 <br /><br />
-                      <button class="btn btn-info" onclick="NewName()">Noch ein Nomen</button>
+                      <button class="btn btn-info" onclick="totalInARow = 0; updateTotals(); NewName()">Noch ein Nomen</button>
 
             </div>
 
 
             <script>
+
+                let totalInARow = 0;
+                let totalRight = 0;
+                let totalWrong = 0
+                let totalHelps = 0;
+
+                function updateTotals() { 
+                    document.getElementById('rightCount').innerText = totalRight.toString();;
+                    document.getElementById('wrongCount').innerText = totalWrong.toString();;
+                    document.getElementById('inARowCount').innerText = totalInARow.toString();;  
+                    document.getElementById('totalHelps').innerText = totalHelps.toString();;   
+
+                }
 
                 // Add event listeners for dropdown changes
                 document.getElementById('kursDropdown').addEventListener('change', function () {
@@ -246,7 +261,7 @@
                                     showMessage('Shade...', 'Ich habe keine Nomen gefunden für diese Kapitel und kurs... Bite ruf Pedro an !!', 'error');
                                     return;
                                 }
-                                ;
+                                
                                 loadQuestion();
 
 
@@ -284,6 +299,16 @@
                             "nameTypeID": 1,
                             "plural": "Abende",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 837,
+                            "name_DE": "Abenteur",
+                            "name_ENG": "AdventureDas",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Abenteur",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 479,
@@ -326,6 +351,46 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 814,
+                            "name_DE": "Akku",
+                            "name_ENG": "Bettery",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Akkus",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 987,
+                            "name_DE": "Akrobat",
+                            "name_ENG": "Acrobat (man)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Akrobaten",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 989,
+                            "name_DE": "Akrobatic",
+                            "name_ENG": "Acrobatic",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 988,
+                            "name_DE": "Akrobatin",
+                            "name_ENG": "Acrobat (woman)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Akrobatinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 341,
                             "name_DE": "Alkohol",
                             "name_ENG": "Alcohol",
@@ -363,6 +428,26 @@
                             "kurs": "B1",
                             "nameTypeID": 1,
                             "plural": "Alteilungen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 850,
+                            "name_DE": "Alter",
+                            "name_ENG": "Age",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 893,
+                            "name_DE": "Altstadt",
+                            "name_ENG": "Old town",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Altstädte",
                             "artikel": "Die"
                         },
                         {
@@ -414,6 +499,16 @@
                             "nameTypeID": 1,
                             "plural": "Angebote",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 805,
+                            "name_DE": "Anhang",
+                            "name_ENG": "Appendix / Attachments",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Anhänge",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 575,
@@ -516,6 +611,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 834,
+                            "name_DE": "Applaus",
+                            "name_ENG": "Applause",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Applause",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 250,
                             "name_DE": "April",
                             "name_ENG": "April",
@@ -533,6 +638,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Arbeitsplätze",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 846,
+                            "name_DE": "Ärger",
+                            "name_ENG": "Anger",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
                             "artikel": "Der"
                         },
                         {
@@ -596,6 +711,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 797,
+                            "name_DE": "Aufzug",
+                            "name_ENG": "Elevator",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Aufzüger",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 344,
                             "name_DE": "Auge",
                             "name_ENG": "Eye",
@@ -654,6 +779,16 @@
                             "nameTypeID": 1,
                             "plural": "Autos",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 866,
+                            "name_DE": "Autobahn",
+                            "name_ENG": "Freeway",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Autobahnen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 307,
@@ -786,6 +921,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 851,
+                            "name_DE": "Bär",
+                            "name_ENG": "Bear (male)",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bären",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 852,
+                            "name_DE": "Bärin",
+                            "name_ENG": "Bear (female)",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bärinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 103,
                             "name_DE": "Batterie",
                             "name_ENG": "Battery (",
@@ -826,6 +981,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 939,
+                            "name_DE": "Baumarkt",
+                            "name_ENG": "Hardware store",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Baumärkte",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 746,
                             "name_DE": "Baustelle",
                             "name_ENG": "Building site",
@@ -844,6 +1009,26 @@
                             "nameTypeID": 1,
                             "plural": "Becher",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 969,
+                            "name_DE": "Behörde",
+                            "name_ENG": "Authority",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Behörden",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 894,
+                            "name_DE": "Beilage",
+                            "name_ENG": "Supplement",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Beilagen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 356,
@@ -886,6 +1071,36 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 806,
+                            "name_DE": "Besprechung",
+                            "name_ENG": "Meeting",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Besprechungen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 839,
+                            "name_DE": "Beste",
+                            "name_ENG": "Best",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 962,
+                            "name_DE": "Bestek",
+                            "name_ENG": "Best",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 650,
                             "name_DE": "Bestellung",
                             "name_ENG": "Order",
@@ -926,6 +1141,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 924,
+                            "name_DE": "Betrieb",
+                            "name_ENG": "Operation (work)",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Betriebe",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 689,
                             "name_DE": "Betriebkosten",
                             "name_ENG": "Operating costs",
@@ -956,6 +1181,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 867,
+                            "name_DE": "Bewusstsein",
+                            "name_ENG": "Consciousness",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 741,
                             "name_DE": "Beziehung",
                             "name_ENG": "Relationship",
@@ -963,6 +1198,26 @@
                             "kurs": "B1",
                             "nameTypeID": 1,
                             "plural": "Beziehungen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 825,
+                            "name_DE": "Bibliothek",
+                            "name_ENG": "Library",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bibliotheken",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 841,
+                            "name_DE": "Biene",
+                            "name_ENG": "Bee",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bienen",
                             "artikel": "Die"
                         },
                         {
@@ -1016,6 +1271,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 856,
+                            "name_DE": "Blut",
+                            "name_ENG": "Blood",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": "Blut",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 905,
+                            "name_DE": "Bohne",
+                            "name_ENG": "Bean",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bohnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 758,
                             "name_DE": "Bohrmachine",
                             "name_ENG": "Drilling machine",
@@ -1054,6 +1329,46 @@
                             "nameTypeID": 1,
                             "plural": "Boutiquen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 970,
+                            "name_DE": "Braut",
+                            "name_ENG": "Bride",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bräute",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 971,
+                            "name_DE": "Brautigam",
+                            "name_ENG": "Bridegroom (man)",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Bräutigame",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 972,
+                            "name_DE": "Brautpaar",
+                            "name_ENG": "Bridal couple",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Brautpaare",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 973,
+                            "name_DE": "Brautstrauss",
+                            "name_ENG": "Wedding bouquet",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Brautsträusse",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 158,
@@ -1134,6 +1449,16 @@
                             "nameTypeID": 1,
                             "plural": "Brunnen",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 868,
+                            "name_DE": "Brust",
+                            "name_ENG": "Chest",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Brüste",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 62,
@@ -1246,6 +1571,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 906,
+                            "name_DE": "Champignon",
+                            "name_ENG": "Mushroom",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Champignons",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 516,
                             "name_DE": "Chance",
                             "name_ENG": "Chance / Opportunity",
@@ -1276,6 +1611,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 884,
+                            "name_DE": "Clown",
+                            "name_ENG": "Clown (man)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Clowns",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 885,
+                            "name_DE": "Clownin",
+                            "name_ENG": "Clown (woman)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Clowninnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 87,
                             "name_DE": "Computer",
                             "name_ENG": "Computer",
@@ -1284,6 +1639,36 @@
                             "nameTypeID": 1,
                             "plural": "Computer",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 826,
+                            "name_DE": "Computervirus",
+                            "name_ENG": "Computer Virus",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Computerviren",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 942,
+                            "name_DE": "Creme",
+                            "name_ENG": "Cream (skin)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Cremes",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 956,
+                            "name_DE": "Currywurst",
+                            "name_ENG": "Curry sausage",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Currywürste",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 679,
@@ -1296,6 +1681,26 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 807,
+                            "name_DE": "Datei",
+                            "name_ENG": "File",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Dateien",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 808,
+                            "name_DE": "Daten",
+                            "name_ENG": "Data",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 3,
+                            "plural": "Daten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 385,
                             "name_DE": "Datum",
                             "name_ENG": "Date",
@@ -1304,6 +1709,16 @@
                             "nameTypeID": 1,
                             "plural": "Daten",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 974,
+                            "name_DE": "Dekoration",
+                            "name_ENG": "Decoration",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Dekorationnen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 245,
@@ -1334,6 +1749,26 @@
                             "nameTypeID": 2,
                             "plural": null,
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 957,
+                            "name_DE": "Dieb",
+                            "name_ENG": "Thief (man)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Diebe",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 958,
+                            "name_DE": "Diebin",
+                            "name_ENG": "Thief (woman)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Diebinnen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 135,
@@ -1384,6 +1819,26 @@
                             "nameTypeID": 1,
                             "plural": "Diskussionen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 815,
+                            "name_DE": "Display",
+                            "name_ENG": "Display / Monitor",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Display",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 963,
+                            "name_DE": "DJ",
+                            "name_ENG": "DJ",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "DJs",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 576,
@@ -1444,6 +1899,36 @@
                             "nameTypeID": 1,
                             "plural": "Dosen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 812,
+                            "name_DE": "Drittel",
+                            "name_ENG": "Third",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Drittel",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 943,
+                            "name_DE": "Drogerie",
+                            "name_ENG": "Drugstore",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Drogerien",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 944,
+                            "name_DE": "Drucker",
+                            "name_ENG": "Printer",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Drucker",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 280,
@@ -1656,6 +2141,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 940,
+                            "name_DE": "Elektromarkt",
+                            "name_ENG": "Eletric store",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Elektromärkte",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 150,
                             "name_DE": "Eltern",
                             "name_ENG": "Parents",
@@ -1726,6 +2221,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 827,
+                            "name_DE": "Entwicklung",
+                            "name_ENG": "Development",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Entwicklungen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 326,
                             "name_DE": "Erdgeschoss",
                             "name_ENG": "Ground Floor",
@@ -1734,6 +2239,16 @@
                             "nameTypeID": 1,
                             "plural": "Erdgeschosse",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 895,
+                            "name_DE": "Erdnuss",
+                            "name_ENG": "Peanut",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Erdnüsse",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 584,
@@ -1786,6 +2301,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 907,
+                            "name_DE": "Essig",
+                            "name_ENG": "Vinegar",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 794,
                             "name_DE": "Fähigkeit",
                             "name_ENG": "Ability / Skill",
@@ -1793,6 +2318,16 @@
                             "kurs": "B1",
                             "nameTypeID": 1,
                             "plural": "Fähigkeiten",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 999,
+                            "name_DE": "Fahne",
+                            "name_ENG": "Flag",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Fahnen",
                             "artikel": "Die"
                         },
                         {
@@ -1903,6 +2438,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Feiertage",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 925,
+                            "name_DE": "Feinschmecker",
+                            "name_ENG": "Gourmet",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Feinschmecker",
                             "artikel": "Der"
                         },
                         {
@@ -2046,6 +2591,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 864,
+                            "name_DE": "Finger",
+                            "name_ENG": "Finger",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Finger",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 21,
                             "name_DE": "Firma",
                             "name_ENG": "Company",
@@ -2176,6 +2731,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 908,
+                            "name_DE": "Forelle",
+                            "name_ENG": "Trout",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Forellen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 959,
+                            "name_DE": "Form",
+                            "name_ENG": "shappe / mould",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Formen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 652,
                             "name_DE": "Formular",
                             "name_ENG": "Form",
@@ -2286,6 +2861,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 833,
+                            "name_DE": "Freundschaft",
+                            "name_ENG": "Friendschip",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Freundschaften",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 753,
                             "name_DE": "Frisur",
                             "name_ENG": "Hairstyle",
@@ -2294,6 +2879,16 @@
                             "nameTypeID": 1,
                             "plural": "Frisuren",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 896,
+                            "name_DE": "Fruchteis",
+                            "name_ENG": "Fruit ice cream",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 124,
@@ -2376,6 +2971,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 909,
+                            "name_DE": "Gabel",
+                            "name_ENG": "Fork",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gabeln",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 926,
+                            "name_DE": "Gebäck",
+                            "name_ENG": "Pastry",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gebäck",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 671,
                             "name_DE": "Gebäude",
                             "name_ENG": "Building",
@@ -2383,6 +2998,16 @@
                             "kurs": "A2",
                             "nameTypeID": 1,
                             "plural": "Gebäude",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 870,
+                            "name_DE": "Geburtsdatum",
+                            "name_ENG": "Birth date",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Geburtsdaten",
                             "artikel": "Das"
                         },
                         {
@@ -2414,6 +3039,26 @@
                             "nameTypeID": 1,
                             "plural": "Gefühle",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 798,
+                            "name_DE": "Gehalt",
+                            "name_ENG": "Salary",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gehälter",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 877,
+                            "name_DE": "Gehirnerschütterung",
+                            "name_ENG": "Concusion (of the Brain)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gehirnerschütterungen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 177,
@@ -2466,6 +3111,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 897,
+                            "name_DE": "Gericht",
+                            "name_ENG": "Court of law",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gerichte",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 172,
                             "name_DE": "Geschenk",
                             "name_ENG": "Gift",
@@ -2473,6 +3128,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Geschenke",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 964,
+                            "name_DE": "Geschirr",
+                            "name_ENG": "Disch",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
                             "artikel": "Das"
                         },
                         {
@@ -2516,6 +3181,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 871,
+                            "name_DE": "Gesundheitskarte",
+                            "name_ENG": "Healthcare card",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gesundheitskarten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 636,
                             "name_DE": "Gewicht",
                             "name_ENG": "Weigth",
@@ -2523,6 +3198,16 @@
                             "kurs": "A2",
                             "nameTypeID": 2,
                             "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 975,
+                            "name_DE": "Gewitter",
+                            "name_ENG": "Thunderstorm",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Gewitter",
                             "artikel": "Das"
                         },
                         {
@@ -2554,6 +3239,16 @@
                             "nameTypeID": 1,
                             "plural": "Gleise",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 1007,
+                            "name_DE": "Glocke",
+                            "name_ENG": "Bell",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Glocken",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 392,
@@ -2594,6 +3289,26 @@
                             "nameTypeID": 2,
                             "plural": null,
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 910,
+                            "name_DE": "Grill",
+                            "name_ENG": "Grill / BBQ",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Grills",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 880,
+                            "name_DE": "Grippe",
+                            "name_ENG": "Flu",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Grippen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 643,
@@ -2664,6 +3379,16 @@
                             "nameTypeID": 1,
                             "plural": "Guitarren",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 927,
+                            "name_DE": "Gulasch",
+                            "name_ENG": "Goulash",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Goulashe",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 190,
@@ -2794,6 +3519,16 @@
                             "nameTypeID": 1,
                             "plural": "Handyhüllen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 898,
+                            "name_DE": "Hauptrericht",
+                            "name_ENG": "Main course",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Hauptrerichte",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 728,
@@ -2976,6 +3711,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 976,
+                            "name_DE": "Herz",
+                            "name_ENG": "Heart",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Herzen",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 799,
+                            "name_DE": "Hilfe",
+                            "name_ENG": "Help",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Hilfen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 59,
                             "name_DE": "Hobby",
                             "name_ENG": "Hobby",
@@ -2993,6 +3748,26 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Hochzeiten",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 977,
+                            "name_DE": "Hochzeitsplaner",
+                            "name_ENG": "Wedding planner (man)",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Hochzeitsplaner",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 978,
+                            "name_DE": "Hochzeitsplanerin",
+                            "name_ENG": "Wedding planner (woman)",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Hochzeitsplanerinnen",
                             "artikel": "Die"
                         },
                         {
@@ -3036,6 +3811,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 990,
+                            "name_DE": "Honorar",
+                            "name_ENG": "Fee",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Honorare",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 104,
                             "name_DE": "Hose",
                             "name_ENG": "Trousers",
@@ -3066,6 +3851,26 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 842,
+                            "name_DE": "Huhn",
+                            "name_ENG": "Chicken",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Hühner",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 886,
+                            "name_DE": "Humor",
+                            "name_ENG": "Humor",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 366,
                             "name_DE": "Hund",
                             "name_ENG": "Dog",
@@ -3073,6 +3878,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Hunde",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 881,
+                            "name_DE": "Husten",
+                            "name_ENG": "Cough",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
                             "artikel": "Der"
                         },
                         {
@@ -3086,6 +3901,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 929,
+                            "name_DE": "Identität",
+                            "name_ENG": "Identity",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Identitäten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 438,
                             "name_DE": "Information",
                             "name_ENG": "Information",
@@ -3094,6 +3919,16 @@
                             "nameTypeID": 1,
                             "plural": "Informationen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 991,
+                            "name_DE": "Infostand",
+                            "name_ENG": "Information desk",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Infostände",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 32,
@@ -3186,6 +4021,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 800,
+                            "name_DE": "IT-Experte",
+                            "name_ENG": "IT expert (man)",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "IT-Experten",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 801,
+                            "name_DE": "IT-Expertin",
+                            "name_ENG": "IT expertinnen",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "IT-Expertinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 78,
                             "name_DE": "Jacke",
                             "name_ENG": "Jacket",
@@ -3194,6 +4049,16 @@
                             "nameTypeID": 1,
                             "plural": "Jacken",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 945,
+                            "name_DE": "Jackett",
+                            "name_ENG": "Jacket",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Jacketts",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 92,
@@ -3276,6 +4141,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 854,
+                            "name_DE": "Käfige",
+                            "name_ENG": "Cage",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Käfige",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 94,
                             "name_DE": "Kamera",
                             "name_ENG": "camera",
@@ -3284,6 +4159,16 @@
                             "nameTypeID": 1,
                             "plural": "Kameras",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 883,
+                            "name_DE": "Kamillentee",
+                            "name_ENG": "Camomile tea",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kamillentees",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 585,
@@ -3303,6 +4188,16 @@
                             "kurs": "A2",
                             "nameTypeID": 1,
                             "plural": "Kandidatinnen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 899,
+                            "name_DE": "Kantine",
+                            "name_ENG": "Cafeteria",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kantinen",
                             "artikel": "Die"
                         },
                         {
@@ -3346,6 +4241,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 911,
+                            "name_DE": "Kartoffelpüree",
+                            "name_ENG": "Mashed potaftoes",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kartoffelpürees",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 197,
                             "name_DE": "Käse",
                             "name_ENG": "Cheese",
@@ -3356,6 +4261,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 932,
+                            "name_DE": "Kasse",
+                            "name_ENG": "Cash register",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kassen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 690,
                             "name_DE": "Katzenbox",
                             "name_ENG": "Cat box",
@@ -3363,6 +4278,26 @@
                             "kurs": "A2",
                             "nameTypeID": 1,
                             "plural": "Katzenboxen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 933,
+                            "name_DE": "Käufer",
+                            "name_ENG": "Buyer (man)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Käufer",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 934,
+                            "name_DE": "Käuferin",
+                            "name_ENG": "Buyer (woman)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Käuferinnen",
                             "artikel": "Die"
                         },
                         {
@@ -3486,6 +4421,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 912,
+                            "name_DE": "Kirsche",
+                            "name_ENG": "Cherry",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kirschen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 691,
                             "name_DE": "Kiste",
                             "name_ENG": "Box",
@@ -3544,6 +4489,26 @@
                             "nameTypeID": 1,
                             "plural": "Klingeln",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 955,
+                            "name_DE": "Kneipe",
+                            "name_ENG": "Pub",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kneipen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 913,
+                            "name_DE": "Knoblauch",
+                            "name_ENG": "Garlic",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 105,
@@ -3676,6 +4641,66 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 858,
+                            "name_DE": "Krankenhaus",
+                            "name_ENG": "Hospital",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankenhäuser",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 873,
+                            "name_DE": "Krankenkasse",
+                            "name_ENG": "Health insurance",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankenkassen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 887,
+                            "name_DE": "Krankenpfleger",
+                            "name_ENG": "Nurse (man)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankenpfleger",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 888,
+                            "name_DE": "Krankenpflegerin",
+                            "name_ENG": "Nurse (woman)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankenpflegerinnen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 859,
+                            "name_DE": "Krankenwagen",
+                            "name_ENG": "Ambulance",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankenwagen",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 874,
+                            "name_DE": "Krankheit",
+                            "name_ENG": "Illness",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Krankheiten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 441,
                             "name_DE": "Kreditkarte",
                             "name_ENG": "Kreditkarten",
@@ -3786,6 +4811,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 889,
+                            "name_DE": "Künstler",
+                            "name_ENG": "Artist (man)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Künstler",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 890,
+                            "name_DE": "Künstlerin",
+                            "name_ENG": "Artist (woman)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Künstlerinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 397,
                             "name_DE": "Kuss",
                             "name_ENG": "Kiss",
@@ -3796,6 +4841,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 1000,
+                            "name_DE": "Kutsche",
+                            "name_ENG": "Carriage",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Kutschen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 97,
                             "name_DE": "Ladekabel",
                             "name_ENG": "Charging cable",
@@ -3803,6 +4858,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Ladekabel",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 914,
+                            "name_DE": "Lammkotelett",
+                            "name_ENG": "Lamb chop",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Lammkoteletts",
                             "artikel": "Das"
                         },
                         {
@@ -3936,6 +5001,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 843,
+                            "name_DE": "Liebe",
+                            "name_ENG": "Love",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 580,
                             "name_DE": "Liebesfilm",
                             "name_ENG": "Love movie",
@@ -3944,6 +5019,16 @@
                             "nameTypeID": 1,
                             "plural": "Liebesfilme",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 998,
+                            "name_DE": "Lieblingsorchester",
+                            "name_ENG": "Favorite orchester",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Lieblingsorchester",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 583,
@@ -3996,6 +5081,36 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 915,
+                            "name_DE": "Löffel",
+                            "name_ENG": "Spoon",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Löffel",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 828,
+                            "name_DE": "Lösung",
+                            "name_ENG": "Solution",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Lösungen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 979,
+                            "name_DE": "Luftballon",
+                            "name_ENG": "Air ballon",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Luftballons",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 747,
                             "name_DE": "Lüge",
                             "name_ENG": "Lie",
@@ -4014,6 +5129,16 @@
                             "nameTypeID": 1,
                             "plural": "Mädchen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 838,
+                            "name_DE": "Magazin",
+                            "name_ENG": "Magazine",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Magazine",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 561,
@@ -4166,6 +5291,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 830,
+                            "name_DE": "Meinung",
+                            "name_ENG": "Opinion",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Meinungen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 651,
                             "name_DE": "Menge",
                             "name_ENG": "Quantity",
@@ -4174,6 +5309,16 @@
                             "nameTypeID": 1,
                             "plural": "Mengen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 916,
+                            "name_DE": "Messer",
+                            "name_ENG": "Knife",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Messer",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 641,
@@ -4366,6 +5511,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 981,
+                            "name_DE": "Möglischkeit",
+                            "name_ENG": "Possibility",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Möglischkeiten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 246,
                             "name_DE": "Monat",
                             "name_ENG": "Month",
@@ -4394,6 +5549,16 @@
                             "nameTypeID": 1,
                             "plural": "Morgen",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 900,
+                            "name_DE": "Motto",
+                            "name_ENG": "Motto / Slogan",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Mottos",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 442,
@@ -4433,6 +5598,16 @@
                             "kurs": "A1",
                             "nameTypeID": 2,
                             "plural": null,
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 965,
+                            "name_DE": "Musikanlage",
+                            "name_ENG": "Sound system",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Musikanlagen",
                             "artikel": "Die"
                         },
                         {
@@ -4566,6 +5741,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 901,
+                            "name_DE": "Nachtisch",
+                            "name_ENG": "Dessert",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 5,
                             "name_DE": "Name",
                             "name_ENG": "Name",
@@ -4583,6 +5768,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Nasen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 992,
+                            "name_DE": "Nation",
+                            "name_ENG": "Nation",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Nationen",
                             "artikel": "Die"
                         },
                         {
@@ -4626,6 +5821,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 860,
+                            "name_DE": "Notaufnahme",
+                            "name_ENG": "Emergency room",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Notaufnahmen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 734,
                             "name_DE": "Note",
                             "name_ENG": "Grade",
@@ -4634,6 +5839,16 @@
                             "nameTypeID": 1,
                             "plural": "Noten",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 865,
+                            "name_DE": "Notruf",
+                            "name_ENG": "Emengeny call",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Notrufe",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 257,
@@ -4666,6 +5881,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 902,
+                            "name_DE": "Nuss",
+                            "name_ENG": "Nut",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Nüsse",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 680,
                             "name_DE": "Obergeschoss",
                             "name_ENG": "Upper floor",
@@ -4684,6 +5909,16 @@
                             "nameTypeID": 2,
                             "plural": null,
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 960,
+                            "name_DE": "Ofen",
+                            "name_ENG": "Oven",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Öfen",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 510,
@@ -4726,6 +5961,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 917,
+                            "name_DE": "Olive",
+                            "name_ENG": "Olive",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Oliven",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 316,
                             "name_DE": "Oma",
                             "name_ENG": "Granny",
@@ -4756,6 +6001,36 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 996,
+                            "name_DE": "Open Air",
+                            "name_ENG": "Open air",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Open Airs",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 876,
+                            "name_DE": "Operation",
+                            "name_ENG": "Surgery",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Operationen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 946,
+                            "name_DE": "Optiker",
+                            "name_ENG": "Optician",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Optiker",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 217,
                             "name_DE": "Orange",
                             "name_ENG": "Orange",
@@ -4764,6 +6039,16 @@
                             "nameTypeID": 1,
                             "plural": "Orangen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 809,
+                            "name_DE": "Ordner",
+                            "name_ENG": "Folder",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Ordner",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 786,
@@ -4866,6 +6151,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 982,
+                            "name_DE": "Panne",
+                            "name_ENG": "Breakdown / Faillure",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Pannen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 706,
                             "name_DE": "Papier",
                             "name_ENG": "Paper",
@@ -4886,6 +6181,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 947,
+                            "name_DE": "Parfüm",
+                            "name_ENG": "Perfume",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Parfüms",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 502,
                             "name_DE": "Park",
                             "name_ENG": "Park",
@@ -4894,6 +6199,16 @@
                             "nameTypeID": 1,
                             "plural": "Parks",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 935,
+                            "name_DE": "Parkhaus",
+                            "name_ENG": "Parking garage",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Parkhäuser",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 666,
@@ -4916,6 +6231,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 861,
+                            "name_DE": "Patient",
+                            "name_ENG": "Patient (man)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Patienten",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 862,
+                            "name_DE": "Patientin",
+                            "name_ENG": "Patient (woman)",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Patientinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 182,
                             "name_DE": "Pause",
                             "name_ENG": "Break",
@@ -4924,6 +6259,36 @@
                             "nameTypeID": 1,
                             "plural": "Pausen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 930,
+                            "name_DE": "Pfannkuchen",
+                            "name_ENG": "Pancakes",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Pfannkuchen",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 918,
+                            "name_DE": "Pfeffer",
+                            "name_ENG": "Pepper",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 1001,
+                            "name_DE": "Pferd",
+                            "name_ENG": "Horse",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Pferde",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 393,
@@ -4943,6 +6308,16 @@
                             "kurs": "A1",
                             "nameTypeID": 2,
                             "plural": "Pfunde",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 966,
+                            "name_DE": "Picknick",
+                            "name_ENG": "Picnic",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Picknicke",
                             "artikel": "Das"
                         },
                         {
@@ -5046,6 +6421,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 810,
+                            "name_DE": "Postfach",
+                            "name_ENG": "P.O. box",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Postfächer",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 54,
                             "name_DE": "Postleitzahl",
                             "name_ENG": "Postal code",
@@ -5076,6 +6461,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 983,
+                            "name_DE": "Profi",
+                            "name_ENG": "Pro / Professinal ",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Profis",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 42,
                             "name_DE": "Programmierer",
                             "name_ENG": "Programmer",
@@ -5094,6 +6489,16 @@
                             "nameTypeID": 1,
                             "plural": "Programmiererinnen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 811,
+                            "name_DE": "Protokoll",
+                            "name_ENG": "Log / Minutes",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Protokolle",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 287,
@@ -5183,6 +6588,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Radwege",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 847,
+                            "name_DE": "Rauch",
+                            "name_ENG": "Smoke",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
                             "artikel": "Der"
                         },
                         {
@@ -5316,6 +6731,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 1002,
+                            "name_DE": "Reiter",
+                            "name_ENG": "Rider (man)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Reiter",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 1003,
+                            "name_DE": "Reiterin",
+                            "name_ENG": "Rider (woman)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Reiterinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 653,
                             "name_DE": "Reklamationsschein",
                             "name_ENG": "Complain form",
@@ -5346,6 +6781,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 967,
+                            "name_DE": "Rest",
+                            "name_ENG": "Rest / Remainder",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Reste",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 432,
                             "name_DE": "Restaurant",
                             "name_ENG": "Restaurant",
@@ -5353,6 +6798,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Restaurants",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 878,
+                            "name_DE": "Rezept",
+                            "name_ENG": "Prescription",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Rezepte",
                             "artikel": "Das"
                         },
                         {
@@ -5404,6 +6859,16 @@
                             "nameTypeID": 1,
                             "plural": "Rollen",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 919,
+                            "name_DE": "Rotwein",
+                            "name_ENG": "Red wine",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Rotweine",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 354,
@@ -5546,6 +7011,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 948,
+                            "name_DE": "Schere",
+                            "name_ENG": "Scissor",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Scheren",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 116,
                             "name_DE": "Schiff",
                             "name_ENG": "Ship",
@@ -5606,11 +7081,51 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 879,
+                            "name_DE": "Schmerztablette",
+                            "name_ENG": "Painkiller tablet",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Schmerztabletten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 184,
                             "name_DE": "Schnee",
                             "name_ENG": "Snow",
                             "kapitel": 6,
                             "kurs": "A1",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 1004,
+                            "name_DE": "Schneemann",
+                            "name_ENG": "Snowman",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Schneemänner",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 920,
+                            "name_DE": "Schnitzel",
+                            "name_ENG": "Schnitzel",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Schnitzel",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 882,
+                            "name_DE": "Schnupfen",
+                            "name_ENG": "Common Cold",
+                            "kapitel": 12,
+                            "kurs": "A2",
                             "nameTypeID": 2,
                             "plural": null,
                             "artikel": "Der"
@@ -5746,6 +7261,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 949,
+                            "name_DE": "Seife",
+                            "name_ENG": "Soap",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Seifen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 564,
                             "name_DE": "Sekunde",
                             "name_ENG": "Second",
@@ -5806,6 +7331,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 921,
+                            "name_DE": "Serviette",
+                            "name_ENG": "Napkin",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Servietten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 693,
                             "name_DE": "Sessel",
                             "name_ENG": "Armchair",
@@ -5816,6 +7351,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 936,
+                            "name_DE": "Shopper",
+                            "name_ENG": "Shopper (man)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Shopper",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 937,
+                            "name_DE": "Shopperin",
+                            "name_ENG": "Shopper (woman)",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Shopperinnen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 574,
                             "name_DE": "Show",
                             "name_ENG": "Show",
@@ -5823,6 +7378,16 @@
                             "kurs": "A2",
                             "nameTypeID": 1,
                             "plural": "Shows",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 813,
+                            "name_DE": "Sicherheit",
+                            "name_ENG": "Security / Safety",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Sicherheiten",
                             "artikel": "Die"
                         },
                         {
@@ -5866,6 +7431,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 968,
+                            "name_DE": "Sinn",
+                            "name_ENG": "Sense / Meaning",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 802,
+                            "name_DE": "Situation",
+                            "name_ENG": "Situation",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Situationen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 494,
                             "name_DE": "Sitzplatz",
                             "name_ENG": "Seat",
@@ -5884,6 +7469,16 @@
                             "nameTypeID": 1,
                             "plural": "Smartphones",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 819,
+                            "name_DE": "SMS",
+                            "name_ENG": "SMS",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "SMS",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 309,
@@ -5946,6 +7541,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 952,
+                            "name_DE": "Souvenir",
+                            "name_ENG": "Souvenir",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Souvenirs",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 790,
                             "name_DE": "Spannung",
                             "name_ENG": "Tension",
@@ -5974,6 +7579,26 @@
                             "nameTypeID": 1,
                             "plural": "Spaziergänge",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 816,
+                            "name_DE": "Speicherplatz",
+                            "name_ENG": "Memory space",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 953,
+                            "name_DE": "Speisekarte",
+                            "name_ENG": "Menu",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Speisekarten",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 617,
@@ -6026,6 +7651,16 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 950,
+                            "name_DE": "Spielzeugladen",
+                            "name_ENG": "Toy shop",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Spielzeugläden",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 10,
                             "name_DE": "Sport",
                             "name_ENG": "Sport",
@@ -6066,6 +7701,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 824,
+                            "name_DE": "Stadtplan",
+                            "name_ENG": "City map",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Stadtpläner",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 984,
+                            "name_DE": "Standesamt",
+                            "name_ENG": "Register office",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Standesämter",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 275,
                             "name_DE": "Station",
                             "name_ENG": "Station",
@@ -6084,6 +7739,16 @@
                             "nameTypeID": 1,
                             "plural": "Staus",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 922,
+                            "name_DE": "Steak",
+                            "name_ENG": "Steak",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Steaks",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 774,
@@ -6326,6 +7991,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 903,
+                            "name_DE": "Suppe",
+                            "name_ENG": "Soup",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Suppen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 90,
                             "name_DE": "Süssigkeit",
                             "name_ENG": "Sweats",
@@ -6334,6 +8009,16 @@
                             "nameTypeID": 1,
                             "plural": "Süssigkeiten",
                             "artikel": "Die"
+                        },
+                        {
+                            "nameID": 1008,
+                            "name_DE": "Symbol",
+                            "name_ENG": "Symbol / icon",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Symbole",
+                            "artikel": "Das"
                         },
                         {
                             "nameID": 77,
@@ -6396,6 +8081,16 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 817,
+                            "name_DE": "Tarif",
+                            "name_ENG": "Rate / Tariff",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Tarife",
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 70,
                             "name_DE": "Tasche",
                             "name_ENG": "Bag",
@@ -6416,6 +8111,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 823,
+                            "name_DE": "Tastatur",
+                            "name_ENG": "Keyboard",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Tastaturen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 525,
                             "name_DE": "Taste",
                             "name_ENG": "Button",
@@ -6433,6 +8138,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Taxis",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 803,
+                            "name_DE": "Team",
+                            "name_ENG": "Team",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Teams",
                             "artikel": "Das"
                         },
                         {
@@ -6523,6 +8238,16 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Theater",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 849,
+                            "name_DE": "Thema",
+                            "name_ENG": "Topic / Theme",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Themen",
                             "artikel": "Das"
                         },
                         {
@@ -6626,6 +8351,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 804,
+                            "name_DE": "Treppe",
+                            "name_ENG": "Stairs",
+                            "kapitel": 9,
+                            "kurs": "A2",
+                            "nameTypeID": 3,
+                            "plural": "Treppen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 776,
                             "name_DE": "Treppenhaus",
                             "name_ENG": "Staircase",
@@ -6696,6 +8431,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 961,
+                            "name_DE": "Überraschung",
+                            "name_ENG": "Surprise",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Überraschungen",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 511,
                             "name_DE": "Übersetzer",
                             "name_ENG": "Translator (Man)",
@@ -6746,6 +8491,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 835,
+                            "name_DE": "Unglück",
+                            "name_ENG": "Misfortune",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 1006,
+                            "name_DE": "Uniform",
+                            "name_ENG": "Uniform",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Uniformem",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 271,
                             "name_DE": "Universutät",
                             "name_ENG": "University",
@@ -6756,9 +8521,19 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 844,
+                            "name_DE": "Unsinn",
+                            "name_ENG": "Nonsense",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
                             "nameID": 792,
                             "name_DE": "Unterhaltung",
-                            "name_ENG": "Entertreinment",
+                            "name_ENG": "Enterteinment",
                             "kapitel": 2,
                             "kurs": "B1",
                             "nameTypeID": 1,
@@ -6826,6 +8601,26 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 892,
+                            "name_DE": "Verein",
+                            "name_ENG": "Association",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Vereine",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 941,
+                            "name_DE": "Verhalten",
+                            "name_ENG": "Behaviour",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 26,
                             "name_DE": "Verkäufer",
                             "name_ENG": "Salesperson",
@@ -6843,6 +8638,26 @@
                             "kurs": "A1",
                             "nameTypeID": 1,
                             "plural": "Verkäuferinnen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 869,
+                            "name_DE": "Verletzte",
+                            "name_ENG": "Injured",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 4,
+                            "plural": null,
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 863,
+                            "name_DE": "Verletzung",
+                            "name_ENG": "Injury",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Verletzungen",
                             "artikel": "Die"
                         },
                         {
@@ -6906,6 +8721,26 @@
                             "artikel": "Das"
                         },
                         {
+                            "nameID": 818,
+                            "name_DE": "Vertrag",
+                            "name_ENG": "Contract",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Verträge",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 831,
+                            "name_DE": "Visitenkarte",
+                            "name_ENG": "Business card",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Visitenkarten",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 536,
                             "name_DE": "Volkshochschule",
                             "name_ENG": "Adults school",
@@ -6934,6 +8769,36 @@
                             "nameTypeID": 1,
                             "plural": "Vornamen",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 985,
+                            "name_DE": "Vorschlag",
+                            "name_ENG": "Proposal",
+                            "kapitel": 15,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Vorschläge",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 923,
+                            "name_DE": "Vorspeise",
+                            "name_ENG": "Starter (meal)",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Vorspeisen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 993,
+                            "name_DE": "Vorstellung",
+                            "name_ENG": "Performance / presentation",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Vorstellungen",
+                            "artikel": "Die"
                         },
                         {
                             "nameID": 451,
@@ -7016,6 +8881,26 @@
                             "artikel": "Der"
                         },
                         {
+                            "nameID": 951,
+                            "name_DE": "Weinhandlung",
+                            "name_ENG": "Wine shop",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Weinhandlungen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 954,
+                            "name_DE": "Weinlokal",
+                            "name_ENG": "Wine bar",
+                            "kapitel": 14,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Weinlokale",
+                            "artikel": "Das"
+                        },
+                        {
                             "nameID": 785,
                             "name_DE": "Werkstatt",
                             "name_ENG": "Workshop",
@@ -7064,6 +8949,16 @@
                             "nameTypeID": 2,
                             "plural": null,
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 891,
+                            "name_DE": "Wettkampt",
+                            "name_ENG": "Competition",
+                            "kapitel": 12,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Wettkämpte",
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 314,
@@ -7256,6 +9151,16 @@
                             "artikel": "Die"
                         },
                         {
+                            "nameID": 845,
+                            "name_DE": "Zeitschrift",
+                            "name_ENG": "Manazine",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zeitschriften",
+                            "artikel": "Die"
+                        },
+                        {
                             "nameID": 82,
                             "name_DE": "Zettel",
                             "name_ENG": "Note",
@@ -7274,6 +9179,36 @@
                             "nameTypeID": 1,
                             "plural": "Zeugnisse",
                             "artikel": "Das"
+                        },
+                        {
+                            "nameID": 848,
+                            "name_DE": "Zigarette",
+                            "name_ENG": "Cigarette",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zigaretten",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 836,
+                            "name_DE": "Zitat",
+                            "name_ENG": "Quote / Citation",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zitate",
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 822,
+                            "name_DE": "Zoll",
+                            "name_ENG": "Costums",
+                            "kapitel": 10,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Der"
                         },
                         {
                             "nameID": 675,
@@ -7314,6 +9249,46 @@
                             "nameTypeID": 1,
                             "plural": "Züge",
                             "artikel": "Der"
+                        },
+                        {
+                            "nameID": 855,
+                            "name_DE": "Zuhause",
+                            "name_ENG": "Home",
+                            "kapitel": 11,
+                            "kurs": "A2",
+                            "nameTypeID": 2,
+                            "plural": null,
+                            "artikel": "Das"
+                        },
+                        {
+                            "nameID": 994,
+                            "name_DE": "Zuschauer",
+                            "name_ENG": "Spectator (man)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zuschauer",
+                            "artikel": "Der"
+                        },
+                        {
+                            "nameID": 995,
+                            "name_DE": "Zuschauerin",
+                            "name_ENG": "Spectator (woman)",
+                            "kapitel": 16,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zuschauerinnen",
+                            "artikel": "Die"
+                        },
+                        {
+                            "nameID": 904,
+                            "name_DE": "Zutat",
+                            "name_ENG": "Ingredient",
+                            "kapitel": 13,
+                            "kurs": "A2",
+                            "nameTypeID": 1,
+                            "plural": "Zutaten",
+                            "artikel": "Die"
                         }
                     ];
 
@@ -7327,6 +9302,12 @@
 
                     }
 
+                    if (preFilterData.length == 0) {
+                        showMessage('Shade...', 'Ich habe keine Nomen Daten gefunden für diese Kapitel und kurs... Bite ruf Pedro an !!', 'error');
+                        data = null;
+                        loadQuestion();
+                            return;
+                    }
 
                     // Choose a random infinitive_DE from the distinctInfinitives array
                     let random = preFilterData[Math.floor(Math.random() * preFilterData.length)];
@@ -7334,6 +9315,8 @@
                     // Filter the original array based on the random infinitive_DE
                     let filteredData;
 
+                   
+                   
 
                     filteredData = alldata.filter(item => (item.name_DE === random.name_DE));
 
@@ -7409,15 +9392,15 @@
                         $(`#artikel${index}`).removeClass('is-invalid');
 
                     });
-
-
+                    totalHelps++;
+                    totalInARow = 0;
+                    updateTotals();
 
                 }
 
-
+             
 
                 function checkAnswers() {
-
                     // Check user answers and provide feedback
 
                     //  const currentData = data[currentIndex];
@@ -7438,10 +9421,15 @@
                     });
 
                     if (indexFound > -1) {
-
+                        totalInARow++;
+                        totalRight++;
+                        updateTotals();
                         showMessage('Ok ', 'Rischtig !! Noch ein Nomen', 'ok');
                         NewName();
                     } else {
+                        totalWrong++;
+                        totalInARow = 0;
+                        updateTotals();
                         showMessage('Shade...', 'Falsch :( ! Noch ein mal...', 'error');
                         //   alert('Falsch :( ! Noch ein mal...');
 
@@ -7467,7 +9455,7 @@
                 }
 
                 // Initial load
-
+                updateTotals();
                 NewName();
 
             </script>
