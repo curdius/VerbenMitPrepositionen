@@ -22,7 +22,9 @@
 <body>
     <div class="container-fluid bg-info text-white text-center py-3">
         <h1>Deutsch Nomen Quiz</h1><div>
-                                       <p><span id="rightCount"></span> right answers | <span id="wrongCount"></span> wrong answer | <span id="inARowCount"></span> richtige Antworten in Folge | <span id="totalHelps"></span> Beihilfen</p>
+                                       <p>
+                                           <span id="rightCount"></span> Richtige Antworten | <span id="wrongCount"></span> Falsche Antworten | <span id="inARowCount"></span> Richtige Antworten in Folge | <span id="totalHelps"></span> Beihilfen
+                                       </p>
         </div>
     </div>
     <div class="container mt-5">
@@ -10540,7 +10542,7 @@
                     const currentData = data[0];
                     //const currentData = data;
 
-                    $('#nameName').html(`Welche Artikel passen zum Nomen "<B>${currentData.name_DE}</B> - <I>(${currentData.name_ENG})</I>  "?`);
+                    $('#nameName').html(`Welche Artikel passen zum Nomen "<B>${currentData.name_DE} ?</B><BR><span class="text-muted"><FONT size="4">Auf Englisch: <I><B>${currentData.name_ENG}</B></I> Niveau ${currentData.kurs} - Kapitel - ${currentData.kapitel}</FONT></span>`);
 
                     const quizForm = $('#quizForm');
 
