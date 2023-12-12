@@ -32,6 +32,7 @@
                     <div class="form-group">
                         <label for="kursDropdown"><B>Kurs:</B></label>
                         <select class="form-control" id="kursDropdown">
+                            <option value="">[ Alle ]</option>
                             <option value="A1">A1</option>
                             <option value="A2">A2</option>
                             <option value="B1">B1</option>
@@ -253,6 +254,9 @@
                     }
                     if (topicValue === "") {
                         topicValue = null;
+                    }
+                    if (kurslValue === "") {
+                        kurslValue = null;
                     }
 
                     // Check if kapitelValue is provided
